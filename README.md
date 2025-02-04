@@ -1,36 +1,117 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# **Mammothzy: Next.js Form-Based Application**
 
-## Getting Started
+This project is a submission for the ReactJS Intern assignment at **The Internet Folks (TIF)**. It is a multi-page form-based application built using **Next.js** and **TypeScript**, designed to simulate the creation of a new "Activity" entry for Mammothzy, a SaaS platform for team bonding activities.
 
-First, run the development server:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
+## **🚀 Live Demo**  
+[View the Application Here](https://your-deployment-link.vercel.app)  
+
+
+
+## **📋 Features**
+- **Multi-Page Form with Tabs:**  
+  Users can navigate between "Activity Details" and "Location Details" tabs.
+- **Form State Persistence:**  
+  Form data is retained when switching between tabs.
+- **Form Validation:**  
+  Users must complete all required fields with error messages displayed for invalid entries.
+- **Pixel-Perfect Design:**  
+  UI design closely matches the provided Figma reference.
+- **Submission and Reset:**  
+  Successful submission logs form data, displays a success modal, and resets the form.
+
+
+
+## **🛠️ Tech Stack**
+- **Framework:** Next.js
+- **Language:** TypeScript
+- **Styling:** Tailwind CSS (or your chosen library)
+- **Form Handling:** React Hook Form (or Formik)
+- **Deployment:** Vercel
+
+
+
+## **📁 Project Structure**
+```plaintext
+mammothzy/
+├── components/        # Reusable UI components
+│   ├── Tabs.tsx       # Tab navigation component
+│   ├── ActivityForm.tsx # Activity Details form
+│   └── LocationForm.tsx # Location Details form
+├── pages/             # Next.js pages
+│   └── index.tsx      # Entry point for the application
+├── styles/            # Global styles
+│   └── globals.css
+└── utils/             # Utility functions
+    └── validation.ts  # Form validation logic
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## **📦 Installation**
 
-## Learn More
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/your-username/mammothzy.git
+   ```
+2. Navigate to the project directory:
+   ```bash
+   cd mammothzy
+   ```
+3. Install dependencies:
+   ```bash
+   npm install
+   ```
+4. Run the development server:
+   ```bash
+   npm run dev
+   ```
+5. Open [http://localhost:3000](http://localhost:3000) in your browser to view the application.
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## **🚀 Deployment**
+The project is deployed on **Vercel** for public access.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### **Steps to Deploy:**
+1. Connect the GitHub repository to Vercel.
+2. Configure the project settings.
+3. Deploy the application with:
+   ```bash
+   vercel deploy
+   ```
 
-## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## **📝 Usage Instructions**
+1. Navigate between form tabs to fill in the required information.
+2. Ensure that all fields are valid before proceeding to the next step.
+3. Submit the form to view the success modal.
+4. Reset the form state for a fresh start.
+
+
+
+## **🤔 Key Design Decisions**
+- **State Management:** Use of React's state and context for form data persistence.
+- **Validation:** React Hook Form for efficient validation handling.
+- **Styling:** Tailwind CSS for responsive and pixel-perfect design.
+
+
+
+## **📊 Evaluation Points**
+- **UI Design:** Pixel-perfect replication of the Figma reference.
+- **Code Quality:** Clean, maintainable, and TypeScript-compliant code.
+- **Functionality:** Full adherence to assignment requirements.
+- **Explainability:** Clear comments and structured project organization.
+
+
+
+## **📧 Contact**
+- **Gunjan Bangde:** [gunjan.bangde@theinternetfolks.com](mailto:gunjan.bangde@theinternetfolks.com)  
+- **Ziyad Hasan:** [ziyad.hasan@theinternetfolks.com](mailto:ziyad.hasan@theinternetfolks.com)
+
+
+
+## **📜 License**
+This project is licensed under the MIT License.
+```
