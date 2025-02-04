@@ -35,16 +35,18 @@ This project is a submission for the ReactJS Intern assignment at **The Internet
 ## **📁 Project Structure**
 ```plaintext
 mammothzy/
-├── components/        # Reusable UI components
-│   ├── Tabs.tsx       # Tab navigation component
-│   ├── ActivityForm.tsx # Activity Details form
-│   └── LocationForm.tsx # Location Details form
-├── pages/             # Next.js pages
-│   └── index.tsx      # Entry point for the application
-├── styles/            # Global styles
-│   └── globals.css
-└── utils/             # Utility functions
-    └── validation.ts  # Form validation logic
+├── src/
+│   ├── app/             # Next.js app directory
+│   │   └── page.tsx     # Entry point for the application
+│   ├── components/      # Reusable UI components
+│   │   ├── Tabs.tsx     # Tab navigation component
+│   │   ├── ActivityForm.tsx # Activity Details form
+│   │   └── LocationForm.tsx # Location Details form
+│   ├── styles/          # Global styles
+│   │   └── globals.css  # Global CSS styles
+│   └── utils/           # Utility functions
+│       └── validation.ts # Form validation logic
+...
 ```
 
 
