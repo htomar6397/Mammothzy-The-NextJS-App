@@ -26,8 +26,8 @@ This project is a submission for the ReactJS Intern assignment at **The Internet
 ## **🛠️ Tech Stack**
 - **Framework:** Next.js
 - **Language:** TypeScript
-- **Styling:** Tailwind CSS (or your chosen library)
-- **Form Handling:** React Hook Form (or Formik)
+- **Styling:** Tailwind CSS
+- **Form Handling:** React Hook Form
 - **Deployment:** Vercel
 
 
@@ -97,21 +97,6 @@ The project is deployed on **Vercel** for public access.
 - **Styling:** Tailwind CSS for responsive and pixel-perfect design.
 
 
-
-## **📊 Evaluation Points**
-- **UI Design:** Pixel-perfect replication of the Figma reference.
-- **Code Quality:** Clean, maintainable, and TypeScript-compliant code.
-- **Functionality:** Full adherence to assignment requirements.
-- **Explainability:** Clear comments and structured project organization.
-
-
-
-## **📧 Contact**
-- **Gunjan Bangde:** [gunjan.bangde@theinternetfolks.com](mailto:gunjan.bangde@theinternetfolks.com)  
-- **Ziyad Hasan:** [ziyad.hasan@theinternetfolks.com](mailto:ziyad.hasan@theinternetfolks.com)
-
-
-
 ## **📜 License**
 This project is licensed under the MIT License.
-```
+
