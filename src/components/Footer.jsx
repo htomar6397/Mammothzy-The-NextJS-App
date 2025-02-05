@@ -1,17 +1,16 @@
-import Image from "next/image";
-import facebook from "/public/logos/fb.svg";
-import linkedIn from "/public/logos/lkdn.svg";
-import instagram from "/public/logos/ig.svg"
-import gmail from "/public/logos/gmail.svg";
-import logo from "/public/logos/logo.svg";
+import Facebook from "/public/logos/fb.svg";
+import LinkedIn from "/public/logos/lkdn.svg";
+import Instagram from "/public/logos/ig.svg"
+import Gmail from "/public/logos/gmail.svg";
+import Logo from "/public/logos/logo.svg";
 
 
 export function Footer() {
   return (
-    <footer className=" p-4 text-center flex flex-col items-center justify-center ">
+    <footer className=" p-4 text-center flex flex-col items-center justify-center border-t-[1.5px]  border-t-[#E9E9EB]  ">
       <div className="flex items-center justify-center my-[0.75rem]">
-        <Image
-          src={logo}
+        <Logo
+        
           alt=" Logo"
           width={250}
           height={96}
@@ -25,8 +24,8 @@ export function Footer() {
 
       <div className="flex gap-5 items-center justify-center mt-[0.75rem] ">
         <a href="/facebook">
-          <Image
-            src={facebook}
+          <Facebook
+            
             alt="facebook Logo"
             // width={40}
             // height={40}
@@ -34,8 +33,8 @@ export function Footer() {
           />
         </a>
         <a href="/linkden">
-          <Image
-            src={linkedIn}
+          <LinkedIn
+           
             alt="linkedIn logo"
             // width={40}
             // height={40}
@@ -43,8 +42,8 @@ export function Footer() {
           />
         </a>
         <a href="/instragram">
-          <Image
-            src={instagram}
+          <Instagram
+           
             alt="instagram logo"
             // width={40}
 
@@ -53,8 +52,8 @@ export function Footer() {
           />
         </a>
         <a href="/gmail">
-          <Image
-            src={gmail}
+          <Gmail
+          
             alt="gmail logo"
             // width={40}
             // height={40}
@@ -64,7 +63,7 @@ export function Footer() {
       </div>
 
       <div className="w-[100vw] my-[0.75rem]  px-[6rem]">
-        <div className="h-[1.5px] my-3 bg-[#E9E9EB]"></div>
+        <div className="h-[1px] my-3 bg-[#E9E9EB]"></div>
       </div>
       <div className="  ">
         <p className=" font-medium text-[16px] leading-[160%] text-[#6B6B6B] tracking-[0.04]   ">
