@@ -1,10 +1,11 @@
-import React, { Dispatch, useEffect } from "react";
+import React, { Dispatch, useEffect, useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import Arrowsvg from "/public/logos/arrow.svg";
 import InputField from "@/components/ui/InputField";
 import { locationSchema } from "@/utils/location.validator";
+import { Modal } from "@/components/Modal";
 
 interface LocationFormProps {
   setStep: Dispatch<React.SetStateAction<number>>;
@@ -56,7 +57,7 @@ const LocationForm: React.FC<LocationFormProps> = ({ setStep }) => {
       
     };
   }, [reset, getValues]);
-
+  const  [modal,setModal] = useState<boolean>(false);
   const onSubmit = (data: LocationFormValues) => {
     
     const activityDataString = sessionStorage.getItem("activityData");
@@ -69,7 +70,7 @@ const LocationForm: React.FC<LocationFormProps> = ({ setStep }) => {
    
     sessionStorage.removeItem("activityData");
     
-    setStep(3);
+    setModal(true);
     sessionStorage.removeItem("step");
   };
 
@@ -158,6 +159,9 @@ const LocationForm: React.FC<LocationFormProps> = ({ setStep }) => {
           </button>
         </div>
       </form>
+      {
+         modal && (<Modal setStep={setStep}/>)
+      }
     </>
   );
 };

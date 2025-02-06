@@ -3,7 +3,6 @@ import Sidebar from "@/components/SideBar";
 import { useEffect, useState } from "react";
 import ActivityForm from "./ActivityForm";
 import LocationForm from "./LocationForm";
-import { Modal } from "@/components/Modal";
 
 export default function Main (){
     const [step, setStep] = useState<number>( 1)
@@ -25,12 +24,10 @@ export default function Main (){
             step===1 ?
             (
               <ActivityForm setStep={setStep}/>
-            ): step==2 ?
+            ):
             (
               <LocationForm setStep={setStep}/>
-            ) : (
-              <Modal setStep={setStep}/>
-            )
+            ) 
             }
 
           </div>

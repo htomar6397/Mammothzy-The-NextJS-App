@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useEffect, useState } from "react";
 import Check from "/public/logos/check.svg";
 
@@ -28,36 +28,36 @@ const RadioGroup: React.FC<RadioGroupProps> = ({
   required,
   other,
 }) => {
-
   const [lab, setLab] = useState<string>("");
+  const [otherInputValue, setOtherInputValue] = useState<string>("");
 
   useEffect(() => {
-    // Keep lab state in sync with selectedValue
     const selectedOption = options.find(
       (option) => option.value === selectedValue
     );
-    setLab(selectedOption?.label || "");
+    setLab(selectedOption?.label || (selectedValue && "Other"));
   }, [selectedValue, options]);
 
-  // Merge "Other" dynamically if needed
   const dynamicOptions = other
     ? [...options, { label: "Other", value: "other" }]
     : options;
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    
-    onChange(e.target.value); // Update parent with "Other" value
+    const value = e.target.value;
+    setOtherInputValue(value);
+    onChange(value); // Send custom value to parent
   };
 
   const handleRadioChange = (option: RadioOption) => {
     if (option.value !== "other") {
+      setOtherInputValue("");
       onChange(option.value);
     }
-    setLab(option.label); 
+    setLab(option.label);
   };
 
   return (
-    <div className="">
+    <div className="my-1">
       <p className="h-[20px] not-italic font-medium text-[14px] leading-[20px] flex items-center">
         {groupLabel}
         {required && <span className="text-red-500 ml-2">*</span>}
@@ -93,20 +93,15 @@ const RadioGroup: React.FC<RadioGroupProps> = ({
         ))}
 
         {/* Show text input when "Other" is selected */}
-               <div
-          className={`mt-[-0.3rem] overflow-hidden transition-height duration-300 ease-in-out ${
-            lab === "Other"
-              ? "max-h-20 opacity-100"
-              : "max-h-0 opacity-0"
-          }`}
-        >
+        {lab === "Other" && (
           <input
             type="text"
             placeholder="Specify the category"
+            value={otherInputValue}
             onChange={handleInputChange}
             className="w-full border-[1px] rounded-full border-gray-200 px-[0.96rem] text-[12px] leading-[20px] h-10 shadow-sm focus:border-blue-500 focus:ring-blue-500 placeholder:text-gray-500"
           />
-        </div>
+        )}
 
         {error && <p className="text-red-500 text-sm">{error}</p>}
       </div>
