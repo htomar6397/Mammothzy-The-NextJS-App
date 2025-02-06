@@ -1,56 +1,43 @@
 import Flag from "/public/logos/flag.svg";
 import Location from "/public/logos/location.svg";
-import { Dispatch, SetStateAction } from "react";
-
-
 
 interface SidebarProps {
+  step: number;
+}
 
-  setStep: Dispatch<SetStateAction<number>>;
-  step : number;
+const Sidebar: React.FC<SidebarProps> = ({ step }) => {
+  const ACTIVE_STEP_STYLES = "bg-[#F7F7F7] font-semibold";
+  const INACTIVE_TEXT_COLOR = "#6B6B6B";
+  const ACTIVE_TEXT_COLOR = "#2E2B2B";
 
+  const getNavItemClass = (itemStep: number) =>
+    step === itemStep ? ACTIVE_STEP_STYLES : "";
+
+  const getTextColor = (itemStep: number) =>
+    step === itemStep ? ACTIVE_TEXT_COLOR : INACTIVE_TEXT_COLOR;
+
+  return (
+    <div className="flex flex-col pr-2 border-r-[1.8px] border-r-[#ececef6a] relative">
+      <nav className="flex flex-col pr-[1.6rem] sticky top-0">
+        <div
+          className={`flex gap-[0.6rem] rounded-md ${getNavItemClass(
+            1
+          )} px-7 py-3`}
+        >
+          <Flag alt="Home" stroke={getTextColor(1)} />
+          <span className={`text-[${getTextColor(1)}]`}>Activity Details</span>
+        </div>
+        <div
+          className={`flex gap-[0.6rem] rounded-md ${getNavItemClass(
+            0
+          )} px-7 py-3`}
+        >
+          <Location alt="loc" stroke={getTextColor(0)} />
+          <span className={`text-[${getTextColor(0)}]`}>Location Details</span>
+        </div>
+      </nav>
+    </div>
+  );
 };
 
-
-
-const Sidebar: React.FC<SidebarProps> = ({ step,setStep }) => {
-   
-
-     return (
-       <div className="flex flex-col pr-6 border-r-[1.5px] border-r-[#E9E9EB] ">
-         <nav className="flex flex-col   pr-7 ">
-           <div
-             onClick={() => setStep(1)}
-             className={`flex gap-2 rounded-md cursor-pointer ${
-               step === 1 ? "bg-[#F7F7F7]" : ""
-             } px-6 py-3`}
-           >
-             <Flag alt="Home" stroke={step === 1 ? "#2E2B2B" : "#6B6B6B"} />
-             <span
-               className={`text-[${step === 1 ? "#2E2B2B" : "#6B6B6B"}] ${
-                 step === 1 ? "font-semibold" : ""
-               }`}
-             >
-               Activity Details
-             </span>
-           </div>
-           <div
-             onClick={() => setStep(0)}
-             className={`flex gap-2 rounded-md cursor-pointer  ${
-               step === 0 ? "bg-[#F7F7F7]" : ""
-             } px-6 py-3`}
-           >
-             <Location alt="loc" stroke={step === 0 ? "#2E2B2B" : "#6B6B6B"} />
-             <span
-               className={`text-[${step === 0 ? "#2E2B2B" : "#6B6B6B"}] ${
-                 step === 0 ? "font-semibold" : ""
-               }`}
-             >
-               Location Details
-             </span>
-           </div>
-         </nav>
-       </div>
-     );
-}
 export default Sidebar;

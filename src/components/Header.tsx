@@ -1,12 +1,12 @@
-import Logosvg from '/public/logos/logo.svg';
+import Logopng from '/public/logos/logo.svg';
 import Profilesvg from '/public/logos/profile.svg';
 export function Header() {
   return (
-    <header className="flex justify-center items-center px-[6rem] py-[18px] h-[97px]  border-b-[1.5px]  border-b-[#E9E9EB]  ">
+    <header className="flex justify-center items-center px-[6rem] py-[18px] h-[97px]  border-b-[1.8px]  border-b-[#ececef6a]  ">
       <div className="flex justify-between items-center p-0   w-full">
         <div className="flex items-center gap-2">
-          <Logosvg
-            // src={logosvg}
+          <Logopng
+            // src={Logopng}
             alt="Mammothzy Logo"
             width={196}
             height={75}
@@ -17,12 +17,9 @@ export function Header() {
         <nav className="flex flex-grow-1"></nav>
 
         <div>
-          <a
-            href="#"
-            className="flex items-center gap-2 text-sm hover:underline"
-          >
+          <a href="#" className="flex items-center gap-2 text-sm ">
             <Profilesvg alt="Profile logo" width={36} height={37} />
-            <span className=" not-italic font-semibold text-[16px] leading-[24px] ">
+            <span className=" font-semibold text-[16px] text-gray-800 leading-[28px] ">
               Profile
             </span>
           </a>
