@@ -36,23 +36,22 @@ const ActivityForm: React.FC<ActivityFormProps> = ({setStep}) => {
     if (savedData) {
       reset(JSON.parse(savedData));
     }
-  }, [reset]);
+    return ()=>{
+      if(savedData) sessionStorage.removeItem("activityData");
+    }
+
+  });
 
     useEffect(() => {
-      const savedData = sessionStorage.getItem("activityData");
-      if (savedData) {
-        reset(JSON.parse(savedData));
-      }
-
+      // Warn if data differs from session storage
       const handleBeforeUnload = (event: BeforeUnloadEvent) => {
-        const formData = getValues();
-        const hasData = Object.values(formData).some(
-          (value) => typeof value === "string" && value.trim() !== ""
-        );
-        if (hasData) {
+        const currentData = JSON.stringify(getValues());
+        const savedDataString = sessionStorage.getItem("activityData") || "{}";
+// console.log(currentData,savedDataString);
+
+        if (savedDataString != currentData) {
           event.preventDefault();
-          event.returnValue =
-            "You have unsaved changes. Are you sure you want to leave?";
+          alert("");
         }
       };
 
@@ -60,15 +59,16 @@ const ActivityForm: React.FC<ActivityFormProps> = ({setStep}) => {
 
       return () => {
         window.removeEventListener("beforeunload", handleBeforeUnload);
+        
       };
     }, [reset, getValues]);
     
   const onSubmit = (data: ActivityFormValues) => {
-    console.log("Form Data:", data);
-    // Save activity data to the database
+   
     sessionStorage.setItem("activityData", JSON.stringify(data));
 
-    setStep(0);
+    setStep(2);
+    sessionStorage.setItem("step","2");
   };
 
   return (

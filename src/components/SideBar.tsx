@@ -29,11 +29,11 @@ const Sidebar: React.FC<SidebarProps> = ({ step }) => {
         </div>
         <div
           className={`flex gap-[0.6rem] rounded-md ${getNavItemClass(
-            0
+            2
           )} px-7 py-3`}
         >
-          <Location alt="loc" stroke={getTextColor(0)} />
-          <span className={`text-[${getTextColor(0)}]`}>Location Details</span>
+          <Location alt="loc" stroke={getTextColor(2)} />
+          <span className={`text-[${getTextColor(2)}]`}>Location Details</span>
         </div>
       </nav>
     </div>
