@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+"use client"
+import React, { useEffect, useState } from "react";
 import Check from "/public/logos/check.svg";
 
 type RadioOption = {
@@ -29,6 +30,14 @@ const RadioGroup: React.FC<RadioGroupProps> = ({
 }) => {
 
   const [lab, setLab] = useState<string>("");
+
+  useEffect(() => {
+    // Keep lab state in sync with selectedValue
+    const selectedOption = options.find(
+      (option) => option.value === selectedValue
+    );
+    setLab(selectedOption?.label || "");
+  }, [selectedValue, options]);
 
   // Merge "Other" dynamically if needed
   const dynamicOptions = other

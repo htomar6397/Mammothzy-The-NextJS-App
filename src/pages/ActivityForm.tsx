@@ -1,4 +1,5 @@
-import React, { Dispatch } from "react";
+"use client"
+import React, { Dispatch, useEffect } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -24,12 +25,49 @@ const ActivityForm: React.FC<ActivityFormProps> = ({setStep}) => {
     handleSubmit,
     control,
     formState: { errors },
+    reset,
+    getValues
   } = useForm<ActivityFormValues>({
     resolver: zodResolver(activitySchema),
   });
+  // Load initial data from localStorage
+  useEffect(() => {
+    const savedData = sessionStorage.getItem("activityData");
+    if (savedData) {
+      reset(JSON.parse(savedData));
+    }
+  }, [reset]);
 
+    useEffect(() => {
+      const savedData = sessionStorage.getItem("activityData");
+      if (savedData) {
+        reset(JSON.parse(savedData));
+      }
+
+      const handleBeforeUnload = (event: BeforeUnloadEvent) => {
+        const formData = getValues();
+        const hasData = Object.values(formData).some(
+          (value) => typeof value === "string" && value.trim() !== ""
+        );
+        if (hasData) {
+          event.preventDefault();
+          event.returnValue =
+            "You have unsaved changes. Are you sure you want to leave?";
+        }
+      };
+
+      window.addEventListener("beforeunload", handleBeforeUnload);
+
+      return () => {
+        window.removeEventListener("beforeunload", handleBeforeUnload);
+      };
+    }, [reset, getValues]);
+    
   const onSubmit = (data: ActivityFormValues) => {
     console.log("Form Data:", data);
+    // Save activity data to the database
+    sessionStorage.setItem("activityData", JSON.stringify(data));
+
     setStep(0);
   };
 
@@ -186,7 +224,6 @@ const ActivityForm: React.FC<ActivityFormProps> = ({setStep}) => {
         </div>
 
         <button
-        
           type="submit"
           className="w-[10.5rem] mt-4 bg-black font-[550] text-sm text-white py-[0.66rem] text-center rounded-full hover:bg-gray-800"
         >
