@@ -8,7 +8,7 @@ import Image from "next/image";
 
 export function Footer() {
   return (
-    <footer className=" p-4 text-center flex flex-col items-center justify-center border-t-[1.8px]  border-t-[#ececef6a] mb-12 pt-[3.1rem]   ">
+    <footer className=" p-4 text-center flex flex-col items-center justify-center border-t-[1.8px]  border-t-[#ececefcf] mb-12 pt-[3.1rem]   ">
       <div className="flex items-center justify-center mt-[0.82rem] mb-[0.68rem]">
         <Logosvg
           // src={Logopng}
@@ -61,7 +61,7 @@ export function Footer() {
       </div>
 
       <div className="w-[100vw] my-[0.75rem]  px-[6rem]">
-        <div className="h-[1.5px] my-3 bg-[#ececef6a]"></div>
+        <div className="h-[1.8px] my-3 bg-[#ececefcf]"></div>
       </div>
       <div className="  ">
         <p className=" font-medium text-[16px] leading-[160%] text-[#6B6B6B] tracking-[0.04]   ">

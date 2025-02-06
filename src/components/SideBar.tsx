@@ -17,8 +17,8 @@ const Sidebar: React.FC<SidebarProps> = ({ step }) => {
     step === itemStep ? ACTIVE_TEXT_COLOR : INACTIVE_TEXT_COLOR;
 
   return (
-    <div className="flex flex-col pr-2 border-r-[1.8px] border-r-[#ececef6a] relative">
-      <nav className="flex flex-col pr-[1.6rem] sticky top-0">
+    <div className="flex flex-col pr-2 border-r-[1.8px] border-r-[#ececefcf] relative ">
+      <nav className="flex flex-col pr-[1.6rem]  sticky top-0 z-10">
         <div
           className={`flex gap-[0.6rem] rounded-md ${getNavItemClass(
             1

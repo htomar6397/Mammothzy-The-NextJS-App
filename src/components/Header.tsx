@@ -2,7 +2,7 @@ import Logopng from '/public/logos/logo.svg';
 import Profilesvg from '/public/logos/profile.svg';
 export function Header() {
   return (
-    <header className="flex justify-center items-center px-[6rem] py-[18px] h-[97px]  border-b-[1.8px]  border-b-[#ececef6a]  ">
+    <header className="flex justify-center items-center px-[6rem] py-[18px] h-[97px]  border-b-[1.8px]  border-b-[#ececefcf]  ">
       <div className="flex justify-between items-center p-0   w-full">
         <div className="flex items-center gap-2">
           <Logopng

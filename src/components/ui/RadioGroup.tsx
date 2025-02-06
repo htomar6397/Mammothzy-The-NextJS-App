@@ -1,5 +1,5 @@
-import React from "react";
-import  Check  from "/public/logos/check.svg";
+import React, { useState } from "react";
+import Check from "/public/logos/check.svg";
 
 type RadioOption = {
   label: string;
@@ -14,6 +14,7 @@ type RadioGroupProps = {
   error?: string;
   groupLabel: string;
   required?: boolean;
+  other?: boolean;
 };
 
 const RadioGroup: React.FC<RadioGroupProps> = ({
@@ -23,38 +24,57 @@ const RadioGroup: React.FC<RadioGroupProps> = ({
   selectedValue,
   error,
   groupLabel,
-  required
- 
+  required,
+  other,
 }) => {
+
+  const [lab, setLab] = useState<string>("");
+
+  // Merge "Other" dynamically if needed
+  const dynamicOptions = other
+    ? [...options, { label: "Other", value: "other" }]
+    : options;
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    
+    onChange(e.target.value); // Update parent with "Other" value
+  };
+
+  const handleRadioChange = (option: RadioOption) => {
+    if (option.value !== "other") {
+      onChange(option.value);
+    }
+    setLab(option.label); 
+  };
+
   return (
     <div className="">
       <p className="h-[20px] not-italic font-medium text-[14px] leading-[20px] flex items-center">
         {groupLabel}
         {required && <span className="text-red-500 ml-2">*</span>}
       </p>
+
       <div className="flex flex-col gap-3 mt-[0.90rem]">
-        {options.map((option) => (
+        {dynamicOptions.map((option) => (
           <label
             key={option.value}
             className="flex items-center cursor-pointer"
           >
             <div
               className={`h-[1.17rem] w-[1.17rem] rounded-full flex items-center justify-center border-[2.45px] ${
-                selectedValue === option.value
+                lab === option.label
                   ? "bg-black border-black"
                   : "border-gray-200"
               }`}
             >
-              {selectedValue === option.value && (
-                <Check height={10} width={12} />
-              )}
+              {lab === option.label && <Check height={10} width={12} />}
             </div>
             <input
               type="radio"
               name={name}
               value={option.value}
               checked={selectedValue === option.value}
-              onChange={() => onChange(option.value)}
+              onChange={() => handleRadioChange(option)}
               className="hidden"
             />
             <span className="ml-[0.45rem] text-sm text-gray-800">
@@ -63,9 +83,10 @@ const RadioGroup: React.FC<RadioGroupProps> = ({
           </label>
         ))}
 
-        <div
+        {/* Show text input when "Other" is selected */}
+               <div
           className={`mt-[-0.3rem] overflow-hidden transition-height duration-300 ease-in-out ${
-            selectedValue === "other"
+            lab === "Other"
               ? "max-h-20 opacity-100"
               : "max-h-0 opacity-0"
           }`}
@@ -73,7 +94,7 @@ const RadioGroup: React.FC<RadioGroupProps> = ({
           <input
             type="text"
             placeholder="Specify the category"
-            onChange={(e) => onChange(e.target.value)}
+            onChange={handleInputChange}
             className="w-full border-[1px] rounded-full border-gray-200 px-[0.96rem] text-[12px] leading-[20px] h-10 shadow-sm focus:border-blue-500 focus:ring-blue-500 placeholder:text-gray-500"
           />
         </div>

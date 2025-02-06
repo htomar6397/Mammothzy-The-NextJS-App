@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Dispatch } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -11,9 +11,15 @@ import {
   categories,
 } from "@/utils/activity-validation";
 
+
+interface ActivityFormProps {
+  setStep: Dispatch<React.SetStateAction<number>>;
+}
+
+
 type ActivityFormValues = z.infer<typeof activitySchema>;
 
-const ActivityForm: React.FC = () => {
+const ActivityForm: React.FC<ActivityFormProps> = ({setStep}) => {
   const {
     handleSubmit,
     control,
@@ -24,6 +30,7 @@ const ActivityForm: React.FC = () => {
 
   const onSubmit = (data: ActivityFormValues) => {
     console.log("Form Data:", data);
+    setStep(0);
   };
 
   return (
@@ -62,6 +69,7 @@ const ActivityForm: React.FC = () => {
               groupLabel="Select the best category to describe your activity"
               required
               name="category"
+              other
             />
           )}
         />
@@ -178,6 +186,7 @@ const ActivityForm: React.FC = () => {
         </div>
 
         <button
+        
           type="submit"
           className="w-[10.5rem] mt-4 bg-black font-[550] text-sm text-white py-[0.66rem] text-center rounded-full hover:bg-gray-800"
         >

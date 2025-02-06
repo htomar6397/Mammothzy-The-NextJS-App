@@ -17,7 +17,7 @@ export default function Main (){
             {
             step ?
             (
-              <ActivityForm/>
+              <ActivityForm setStep={setStep}/>
             ):
             (
               <LocationForm/>

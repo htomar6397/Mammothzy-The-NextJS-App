@@ -4,7 +4,7 @@ export const activitySchema = z
   .object({
     name: z.string({ required_error: "Name is required" }).min(1),
     category: z.string({ required_error: "Category is required" }).min(1),
-    description: z.string({ required_error: "Activity description is required" }).min(1),
+    description: z.string({ required_error: "Activity description is required" }).min(5),
     activityType: z.enum(["indoor", "outdoor", "virtual"], {
       required_error: "Activity type is required",
     }),
@@ -44,7 +44,7 @@ export const categories = [
   { value: "learning", label: "Learning & Development" },
   { value: "sports", label: "Sports and Fitness" },
   { value: "volunteering", label: "Volunteering" },
-  { value: "other", label: "Other" },
+  // { value: "other", label: "Other" },
 ];
 
 export const activityTypes = [
