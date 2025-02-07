@@ -35,21 +35,23 @@ const InputField: React.FC<InputFieldProps> = ({
      onChange(inputValue);
    };
   return (
-    <div className="space-y-1 flex flex-col gap-[0.35rem] ">
-      <label className=" font-medium text-[12px] leading-[20px]    ">
-        {label}
-        {required && <span className="text-red-500 ml-1">*</span>}
-      </label>
-      <input
-        type={type}
-        pattern={pattern}
-        maxLength={maxLength}
-        placeholder={placeholder}
-        value={value}
-        onChange={handleInputChange}
-        className=" w-full border-[1px] rounded-full  border-gray-200 px-[0.96rem] h-10 text-[12px] leading-[20px] shadow-sm focus:border-blue-500 focus:ring-blue-500 placeholder:text-gray-500"
-      />
-      {error && <p className="text-red-500 text-sm">{error}</p>}
+    <div className="flex flex-col gap-1 w-full">
+      <div className="space-y-1 w-full flex flex-col gap-[0.35rem] ">
+        <label className=" font-medium text-[12px] leading-[20px]    ">
+          {label}
+          {required && <span className="text-red-500 ml-1">*</span>}
+        </label>
+        <input
+          type={type}
+          pattern={pattern}
+          maxLength={maxLength}
+          placeholder={placeholder}
+          value={value}
+          onChange={handleInputChange}
+          className="  border-[1px] rounded-full  border-gray-200 px-[0.96rem] h-10 text-[12px] leading-[20px] shadow-sm  placeholder:text-gray-500"
+        />
+      </div>
+      {error && <p className="text-red-500 text-xs">{error}</p>}
     </div>
   );
 }

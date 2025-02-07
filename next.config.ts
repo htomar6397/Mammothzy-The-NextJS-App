@@ -16,6 +16,18 @@ const nextConfig: NextConfig = {
 
     return config;
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "flagcdn.com",
+        port: "",
+        pathname: "/w40/**.png",
+        search: "",
+      },
+    ],
+  },
+
   /* other config options here */
 };
 

@@ -5,7 +5,7 @@ import ActivityForm from "./ActivityForm";
 import LocationForm from "./LocationForm";
 
 export default function Main (){
-    const [step, setStep] = useState<number>( 1)
+    const [step, setStep] = useState<number>(1)
       useEffect(() => {
     // Ensure sessionStorage access only in the client
     const storedStep = Number(sessionStorage.getItem('step')) || 1;

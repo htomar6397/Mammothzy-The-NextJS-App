@@ -117,22 +117,23 @@ const ActivityForm: React.FC<ActivityFormProps> = ({setStep}) => {
           name="description"
           control={control}
           render={({ field }) => (
-            <div className="space-y-1 flex flex-col gap-[0.35rem] mb-1 ">
-              <label className="font-medium text-[12px] leading-[20px]  ">
-                About the Activity
-                <span className="text-red-500 ml-1">*</span>
-              </label>
-              <textarea
-                placeholder="Activity Description"
-                value={field.value}
-                onChange={field.onChange}
-                aria-label="Activity Description"
-                className="resize-none w-full border rounded-lg h-36 border-gray-200  px-[0.95rem] py-[0.9rem] text-sm shadow-sm focus:border-blue-500 focus:ring-blue-500 placeholder:text-gray-500"
-                rows={5}
-              />
-
+            <div className="flex flex-col gap-1 w-full">
+              <div className="space-y-1 flex flex-col gap-[0.35rem] mb-1 ">
+                <label className="font-medium text-[12px] leading-[20px]  ">
+                  About the Activity
+                  <span className="text-red-500 ml-1">*</span>
+                </label>
+                <textarea
+                  placeholder="Activity Description"
+                  value={field.value}
+                  onChange={field.onChange}
+                  aria-label="Activity Description"
+                  className="resize-none w-full border rounded-lg h-36 border-gray-200  px-[0.95rem] py-[0.9rem] text-sm shadow-sm focus:border-blue-500 focus:ring-blue-500 placeholder:text-gray-500"
+                  rows={5}
+                />
+              </div>
               {errors.description?.message && (
-                <p className="text-red-500 text-sm">
+                <p className="text-red-500 text-xs">
                   {errors.description?.message}
                 </p>
               )}
@@ -193,7 +194,7 @@ const ActivityForm: React.FC<ActivityFormProps> = ({setStep}) => {
                     className="w-full border-[1px] rounded-full  border-gray-200 px-[0.96rem] h-10 text-[12px] leading-[20px] shadow-sm focus:border-blue-500 focus:ring-blue-500 placeholder:text-gray-500"
                   />
                   {errors.minMembers?.message && (
-                    <p className="text-red-500 text-sm">
+                    <p className="text-red-500 text-xs">
                       {errors.minMembers?.message}
                     </p>
                   )}
@@ -213,7 +214,7 @@ const ActivityForm: React.FC<ActivityFormProps> = ({setStep}) => {
                     className="w-full border-[1px]  rounded-full  border-gray-200 px-[0.96rem] h-10 text-[12px] leading-[20px] shadow-sm focus:border-blue-500 focus:ring-blue-500 placeholder:text-gray-500"
                   />
                   {errors.maxMembers?.message && (
-                    <p className="text-red-500 text-sm">
+                    <p className="text-red-500 text-sx">
                       {errors.maxMembers?.message}
                     </p>
                   )}
