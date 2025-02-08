@@ -3,7 +3,6 @@ import LinkedIn from "/public/logos/lkdn.svg";
 import Instagram from "/public/logos/ig.svg"
 import Gmail from "/public/logos/gmail.svg";
 import Logosvg from "/public/logos/logo.svg";
-import Image from "next/image";
 
 
 export function Footer() {
