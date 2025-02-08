@@ -35,12 +35,12 @@ const RadioGroup: React.FC<RadioGroupProps> = ({
     const selectedOption = options.find(
       (option) => option.value === selectedValue
     );
+    console.log(selectedOption , selectedValue);
+    
     setLab(selectedOption?.label || (selectedValue && "Other"));
+    if (selectedOption === undefined && selectedValue === "") setLab("Other");
+    setOtherInputValue(selectedOption? "" : selectedValue);
   }, [selectedValue, options]);
-
-  const dynamicOptions = other
-    ? [...options, { label: "Other", value: "other" }]
-    : options;
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
@@ -57,21 +57,21 @@ const RadioGroup: React.FC<RadioGroupProps> = ({
   };
 
   return (
-    <div className="flex flex-col gap-1 ">
-     
-        <p className="h-[20px] not-italic font-medium text-[14px] leading-[20px] flex items-center">
+    <div className="flex flex-col gap-1">
+      <div className="flex flex-col gap-[0.875rem]">
+        <p className="h-[20px] not-italic text-gray-800 font-medium text-[14px] leading-[18px] flex items-center">
           {groupLabel}
           {required && <span className="text-red-500 ml-2">*</span>}
         </p>
 
-        <div className="flex flex-col gap-3 mt-[0.90rem]">
-          {dynamicOptions.map((option) => (
+        <div className="flex flex-col gap-3">
+          {options.map((option) => (
             <label
               key={option.value}
               className="flex items-center cursor-pointer"
             >
               <div
-                className={`h-[1.17rem] w-[1.17rem] rounded-full flex items-center justify-center border-[2.45px] ${
+                className={`h-[1.08rem] w-[1.08rem] rounded-full flex items-center justify-center border-[2px] ${
                   lab === option.label
                     ? "bg-black border-black"
                     : "border-gray-200"
@@ -94,17 +94,53 @@ const RadioGroup: React.FC<RadioGroupProps> = ({
           ))}
 
           {/* Show text input when "Other" is selected */}
-          {lab === "Other" && (
-            <input
-              type="text"
-              placeholder="Specify the category"
-              value={otherInputValue}
-              onChange={handleInputChange}
-              className="w-full border-[1px] rounded-full border-gray-200 px-[0.96rem] text-[12px] leading-[20px] h-10 shadow-sm focus:border-blue-500 focus:ring-blue-500 placeholder:text-gray-500"
-            />
+          {other && (
+            <div>
+              <label className="flex items-center cursor-pointer">
+                <div
+                  className={`h-[1.08rem] w-[1.08rem] rounded-full flex items-center justify-center border-[2px] ${
+                    lab === "Other"
+                      ? "bg-black border-black"
+                      : "border-gray-200"
+                  }`}
+                >
+                  {lab === "Other" && <Check height={10} width={12} />}
+                </div>
+                <input
+                  type="radio"
+                  name={name}
+                  value="other"
+                  checked={selectedValue === "other"}
+                  onChange={() =>
+                    handleRadioChange({ value: "other", label: "Other" })
+                  }
+                  className="hidden"
+                />
+                <span className="ml-[0.45rem] text-sm text-gray-800">
+                  Other
+                </span>
+              </label>
+
+              <div
+                className={` overflow-hidden transition-height duration-300 ease-in-out ${
+                  lab === "Other"
+                    ? "max-h-20 opacity-100 mt-2"
+                    : "max-h-0 opacity-0"
+                }`}
+              >
+                <input
+                  type="text"
+                  placeholder="Specify the category"
+                  value={otherInputValue}
+                  onChange={handleInputChange}
+                  className="w-full border-[1px] rounded-full border-gray-200 px-[0.96rem] text-[12px] leading-[20px] h-10 shadow-sm focus:border-blue-500 focus:ring-blue-500 placeholder:text-gray-500"
+                />
+              </div>
+            </div>
           )}
         </div>
-      
+      </div>
+
       {error && <p className="text-red-500 text-xs">{error}</p>}
     </div>
   );

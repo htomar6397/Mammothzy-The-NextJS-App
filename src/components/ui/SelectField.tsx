@@ -78,16 +78,12 @@ const Select: React.FC<SelectProps> = ({
           </label>
         )}
 
-        <div
-          ref={wrapperRef}
-          className="relative"
-         
-        >
+        <div ref={wrapperRef} className="relative">
           <button
             type="button"
             onClick={() => setIsOpen(!isOpen)}
             className={`w-full flex items-center justify-between px-[0.96rem] h-10 text-[12px] leading-[20px] 
-            border-[1px] shadow-sm rounded-full bg-white 
+            border-[1px] border-[#E5E5E5] shadow-sm rounded-full bg-white 
             ${error ? " ring-red-500" : "ring-black"}
           
             focus:ring-1`}

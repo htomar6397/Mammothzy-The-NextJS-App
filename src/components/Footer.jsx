@@ -8,63 +8,66 @@ import Image from "next/image";
 
 export function Footer() {
   return (
-    <footer className=" p-4 text-center flex flex-col items-center justify-center border-t-[1.8px]  border-t-[#ececefcf] mb-12 pt-[3.1rem]   ">
-      <div className="flex items-center justify-center mt-[0.82rem] mb-[0.68rem]">
-        <Logosvg
-          // src={Logopng}
+    <footer className=" py-16 text-center flex flex-col items-center justify-center border-t-[1px] gap-[1.45rem]  border-t-[#E9E9EB]    ">
+      <div className="flex flex-col gap-6">
+        <div className="flex items-center justify-center ">
+          <Logosvg
+            // src={Logopng}
 
-          alt=" Logo"
-          width={250}
-          height={96}
-          // className="h-10 w-auto mr-2"
-        />
+            alt=" Logo"
+            width={250}
+            height={96}
+            // className="h-10 w-auto mr-2"
+          />
+        </div>
+
+        <p className=" not-italic font-normal text-[16px] leading-[24px] text-[#6B6B6B]  tracking-[0.01]  ">
+          Marketplace for searching, filtering and instantly booking team
+          activities
+        </p>
+        <div className="flex gap-5 items-center justify-center  ">
+          <a href="/facebook">
+            <Facebook
+              alt="facebook Logo"
+              // width={40}
+              // height={40}
+              // className="h-10 w-auto mr-2"
+            />
+          </a>
+          <a href="/linkden">
+            <LinkedIn
+              alt="linkedIn logo"
+              // width={40}
+              // height={40}
+              // className="h-10 w-auto mr-2"
+            />
+          </a>
+          <a href="/instragram">
+            <Instagram
+              alt="instagram logo"
+              // width={40}
+
+              // height={40}
+              // className="h-10 w-auto mr-2"
+            />
+          </a>
+          <a href="/gmail">
+            <Gmail
+              alt="gmail logo"
+              // width={40}
+              // height={40}
+              // className="h-10 w-auto mr-2"
+            />
+          </a>
+        </div>
       </div>
-      <p className=" not-italic font-normal text-[16px] leading-[24px] text-[#6B6B6B] mt-[0.819rem] mb-[0.75rem] tracking-[0.01]  ">
-        Marketplace for searching, filtering and instantly booking team
-        activities
-      </p>
 
-      <div className="flex gap-5 items-center justify-center mt-[0.75rem] ">
-        <a href="/facebook">
-          <Facebook
-            alt="facebook Logo"
-            // width={40}
-            // height={40}
-            // className="h-10 w-auto mr-2"
-          />
-        </a>
-        <a href="/linkden">
-          <LinkedIn
-            alt="linkedIn logo"
-            // width={40}
-            // height={40}
-            // className="h-10 w-auto mr-2"
-          />
-        </a>
-        <a href="/instragram">
-          <Instagram
-            alt="instagram logo"
-            // width={40}
-
-            // height={40}
-            // className="h-10 w-auto mr-2"
-          />
-        </a>
-        <a href="/gmail">
-          <Gmail
-            alt="gmail logo"
-            // width={40}
-            // height={40}
-            // className="h-10 w-auto mr-2"
-          />
-        </a>
-      </div>
-
-      <div className="w-[100vw] my-[0.75rem]  px-[6rem]">
-        <div className="h-[1.8px] my-3 bg-[#ececefcf]"></div>
-      </div>
+      <div
+        style={{ width: "calc(100% - 14rem)" }}
+        className="h-0 border-b-[1px] border-[solid] border-[#E9E9EB]   "
+      ></div>
       <div className="  ">
-        <p className=" font-medium text-[16px] leading-[160%] text-[#6B6B6B] tracking-[0.04]   ">
+        <p className=" h-[26px] font-medium text-[16px] leading-[160%] text-[#6B6B6B] tracking-[0.04]   ">
           Copyright © 2025
         </p>
       </div>

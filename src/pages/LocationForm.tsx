@@ -84,15 +84,17 @@ const LocationForm: React.FC<LocationFormProps> = ({ setStep }) => {
   };
 
   return (
-    <>
-      <div className="font-[620] text-[18px] leading-[24px]">
-        Location Details
-      </div>
-      <div className="font-normal text-sm text-gray-500 mb-5">
-        Please Specify the address for where the activity takes place
+    <div className="flex flex-col gap-[1.45rem]">
+      <div>
+        <div className="font-[620] text-[18px] leading-[24px] mb-[0.125rem]">
+          Location Details
+        </div>
+        <div className="font-normal text-sm text-gray-500">
+          Please Specify the address for where the activity takes place
+        </div>
       </div>
 
-      <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-3">
+      <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
         {/* Address 1 Field */}
         <Controller
           name="ad1"
@@ -143,7 +145,7 @@ const LocationForm: React.FC<LocationFormProps> = ({ setStep }) => {
           )}
         />
         {/* City Field */}
-        <div className="flex gap-4">
+        <div className="flex gap-[0.625rem]">
           <Controller
             name="city"
             control={control}
@@ -174,14 +176,20 @@ const LocationForm: React.FC<LocationFormProps> = ({ setStep }) => {
             )}
           />
         </div>
-        <div className="border-t-[1.8px]   border-[#ececefcf] pt-6 mt-10">
-          <div className="font-[620] text-[18px] leading-[24px]">
-            Contact Details
+
+        <div className="h-0 border-b-[1px] border-[solid] border-[#E9E9EB]  mt-[3rem] mb-2 "></div>
+
+        <div className=" mb-4 flex flex-col gap-6 ">
+          <div>
+            <div className="font-[620] text-[18px] leading-[24px] mb-[0.125rem]">
+              Contact Details
+            </div>
+            <div className="font-normal text-sm text-gray-500 ">
+              Please provide contact information for this activity
+            </div>
           </div>
-          <div className="font-normal text-sm text-gray-500 mb-5">
-            Please provide contact information for this activity
-          </div>
-          <div className="flex gap-3">
+
+          <div className="flex  gap-3">
             <Controller
               name="number"
               control={control}
@@ -189,7 +197,10 @@ const LocationForm: React.FC<LocationFormProps> = ({ setStep }) => {
                 <ContactDetails
                   value={field.value}
                   onChange={field.onChange}
-                  error={errors.number?.message || errors.number?.phoneNumber?.message}
+                  error={
+                    errors.number?.message ||
+                    errors.number?.phoneNumber?.message
+                  }
                 />
               )}
             />
@@ -201,7 +212,7 @@ const LocationForm: React.FC<LocationFormProps> = ({ setStep }) => {
                   placeholder="Contact Name"
                   value={field.value}
                   onChange={field.onChange}
-                  className=" w-full border-[1px] rounded-full  border-gray-200 px-[0.96rem] h-10 text-[12px] leading-[20px] shadow-sm focus:border-blue-500 focus:ring-blue-500 placeholder:text-gray-500"
+                  className=" w-full border-[1px] rounded-full box-content  border-gray-200 px-[0.96rem] h-10 text-[12px] leading-[20px] shadow-sm focus:border-blue-500 focus:ring-blue-500 placeholder:text-gray-500"
                 />
               )}
             />
@@ -211,13 +222,13 @@ const LocationForm: React.FC<LocationFormProps> = ({ setStep }) => {
         <div>
           <button
             onClick={handlePrevious}
-            className="px-5 mt-4 bg-gray-100 font-medium text-gray-700 text-sm py-[0.66rem] text-center rounded-full hover:bg-gray-200 border-gray-200 border-2 transition-all duration-300 delay-200 mr-3"
+            className="px-5  bg-gray-100 font-medium  text-gray-700 text-sm py-[0.7125rem] text-center rounded-full hover:bg-gray-200 border-gray-200 border-2 transition-all duration-300 delay-200 mr-[0.625rem]"
           >
             Previous
           </button>
           <button
             type="submit"
-            className="px-5 relative hover:pr-12 overflow-hidden bg-black font-[550] border-black border-2 text-sm text-white py-[0.66rem] rounded-full hover:bg-gray-800 group transition-all duration-300 delay-200"
+            className="px-5 relative hover:pr-12  overflow-hidden bg-black font-[550] border-black border-0 text-sm text-white  py-[0.7125rem] rounded-full hover:bg-gray-800 group transition-all duration-300 delay-200"
           >
             <span className="inline-block">Submit</span>
             <span className="absolute top-1/2 -translate-y-1/2 left-20 opacity-0 group-hover:opacity-100 transition-all duration-300 delay-200">
@@ -227,7 +238,7 @@ const LocationForm: React.FC<LocationFormProps> = ({ setStep }) => {
         </div>
       </form>
       {modal && <Modal setStep={setStep} />}
-    </>
+    </div>
   );
 };
 

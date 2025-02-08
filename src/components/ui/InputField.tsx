@@ -36,8 +36,8 @@ const InputField: React.FC<InputFieldProps> = ({
    };
   return (
     <div className="flex flex-col gap-1 w-full">
-      <div className="space-y-1 w-full flex flex-col gap-[0.35rem] ">
-        <label className=" font-medium text-[12px] leading-[20px]    ">
+      <div className=" w-full flex flex-col gap-2 ">
+        <label className="not-italic text-gray-900 font-medium text-[12px] leading-[20px]    ">
           {label}
           {required && <span className="text-red-500 ml-1">*</span>}
         </label>
@@ -48,7 +48,7 @@ const InputField: React.FC<InputFieldProps> = ({
           placeholder={placeholder}
           value={value}
           onChange={handleInputChange}
-          className="  border-[1px] rounded-full  border-gray-200 px-[0.96rem] h-10 text-[12px] leading-[20px] shadow-sm  placeholder:text-gray-500"
+          className="  border-[1px] rounded-full box-content border-[#E5E5E5] px-[0.96rem] h-[2.525rem] text-[12px] leading-[20px] shadow-sm  placeholder:text-gray-500"
         />
       </div>
       {error && <p className="text-red-500 text-xs">{error}</p>}
