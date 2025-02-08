@@ -87,7 +87,7 @@ const RadioGroup: React.FC<RadioGroupProps> = ({
                 onChange={() => handleRadioChange(option)}
                 className="hidden"
               />
-              <span className="ml-[0.45rem] text-sm text-gray-800">
+              <span className="ml-[0.55rem] text-sm text-gray-800">
                 {option.label}
               </span>
             </label>
@@ -116,7 +116,7 @@ const RadioGroup: React.FC<RadioGroupProps> = ({
                   }
                   className="hidden"
                 />
-                <span className="ml-[0.45rem] text-sm text-gray-800">
+                <span className="ml-[0.55rem] text-sm text-gray-800">
                   Other
                 </span>
               </label>

@@ -4,7 +4,7 @@ import CheckSvg from "/public/images/green.png"
 import CrossSvg  from "/public/logos/cross.svg"
 import Image from "next/image";
 interface ModalProps {
-  setStep: Dispatch<React.SetStateAction<number>>;
+  setStep: Dispatch<React.SetStateAction<number | null>>;
 }
 export const Modal: React.FC<ModalProps> = ({ setStep }) => {
 
@@ -13,6 +13,7 @@ export const Modal: React.FC<ModalProps> = ({ setStep }) => {
   const closeModal = () => {
     setIsOpen(false);
     setStep(1);
+  
   };
 
   if (!isOpen) return null;

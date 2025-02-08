@@ -10,11 +10,11 @@ import {
   activityTypes,
   locationTypes,
   categories,
-} from "@/utils/activity-validation";
+} from "@/utils/activity.validation";
 
 
 interface ActivityFormProps {
-  setStep: Dispatch<React.SetStateAction<number>>;
+  setStep: Dispatch<React.SetStateAction<number | null>>;
 }
 
 
@@ -190,7 +190,7 @@ const ActivityForm: React.FC<ActivityFormProps> = ({setStep}) => {
                     type="number"
                     placeholder="Minimum Members"
                     value={field.value}
-                    onChange={(e) => field.onChange(Number(e.target.value))}
+                    onChange={(e) => field.onChange(e.target.value)}
                     className="w-full border-[1px] rounded-full  border-gray-200 px-[0.96rem] h-[2.375rem] text-[12px] leading-[20px] shadow-sm focus:border-blue-500 focus:ring-blue-500 placeholder:text-gray-500"
                   />
                   {errors.minMembers?.message && (
@@ -210,11 +210,11 @@ const ActivityForm: React.FC<ActivityFormProps> = ({setStep}) => {
                     type="number"
                     placeholder="Maximum Members"
                     value={field.value}
-                    onChange={(e) => field.onChange(Number(e.target.value))}
+                    onChange={(e) => field.onChange(e.target.value)}
                     className="w-full border-[1px]  rounded-full  border-gray-200 px-[0.96rem] h-[2.375rem] text-[12px] leading-[20px] shadow-sm focus:border-blue-500 focus:ring-blue-500 placeholder:text-gray-500"
                   />
                   {errors.maxMembers?.message && (
-                    <p className="text-red-500 text-sx">
+                    <p className="text-red-500 text-xs">
                       {errors.maxMembers?.message}
                     </p>
                   )}

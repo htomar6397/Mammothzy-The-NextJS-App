@@ -11,11 +11,7 @@ export const indianStates = [
 ];
 
 export const countries = [
-    { value: "in",
-    label: "India",
-    flag: "in",
-    dialCode: "+91",
-  },
+  { value: "in", label: "India", flag: "in", dialCode: "+91"},
   { value: "us", label: "United States", flag: "us", dialCode: "+1" },
   { value: "gb", label: "United Kingdom", flag: "gb", dialCode: "+44" },
   { value: "ca", label: "Canada", flag: "ca", dialCode: "+1" },
@@ -26,8 +22,8 @@ export const countries = [
 
 export const locationSchema = z.object({
   ad1: z.string({ required_error: "Address is Required" }).min(1),
-  ad2: z.string({ required_error: "Category is required" }).optional(),
-  zip: z.string({ required_error: "Zipcode is required" }).min(5).max(6),
+  ad2: z.string().optional(),
+  zip: z.string({ required_error: "Zipcode is required" }).min(5),
   city: z.string({ required_error: "City is required" }).min(1),
   state: z.enum(
     [...indianStates.map((state) => state.value)] as [string, ...string[]],
@@ -45,7 +41,7 @@ export const locationSchema = z.object({
     .regex(/^\d+$/, { message: "Contact Number must contain only digits" })
     .min(10, { message: "Contact Number must be at least 10 digits long" }),
 }),
-  name: z.string({ required_error: " Contact Name is required" }).optional(),
+  name: z.string().optional(),
 });
 
 

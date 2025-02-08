@@ -14,12 +14,12 @@ export const activitySchema = z
     minMembers: z
       .number()
       .int()
-      .min(1, { message: "Minimum members must be at least 1" })
+      
       .optional(),
     maxMembers: z
       .number()
       .int()
-      .min(1, { message: "Maximum members must be at least 1" })
+      
       .optional(),
   })
   .refine(
@@ -44,7 +44,6 @@ export const categories = [
   { value: "learning", label: "Learning & Development" },
   { value: "sports", label: "Sports and Fitness" },
   { value: "volunteering", label: "Volunteering" },
-  // { value: "other", label: "Other" },
 ];
 
 export const activityTypes = [

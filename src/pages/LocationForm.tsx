@@ -10,7 +10,7 @@ import Select from "@/components/ui/SelectField";
 import ContactDetails from "@/components/ContactDetails";
 
 interface LocationFormProps {
-  setStep: Dispatch<React.SetStateAction<number>>;
+  setStep: Dispatch<React.SetStateAction<number | null>>;
 }
 
 type LocationFormValues = z.infer<typeof locationSchema>;
@@ -140,7 +140,7 @@ const LocationForm: React.FC<LocationFormProps> = ({ setStep }) => {
               required
               type="number"
               maxLength={6}
-              pattern="\d{5,6}"
+              // pattern="\d{5,6}"
             />
           )}
         />
