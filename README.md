@@ -36,44 +36,44 @@ This project is a submission for the ReactJS Intern assignment at **The Internet
 ```plaintext
 src/
 ├── app/
-│   ├── layout.tsx       # Defines the base layout for the entire app.
-│   └── page.tsx         # Main entry page for the application.
+│   ├── layout.tsx                  # Defines the base layout for the entire app.
+│   └── page.tsx                    # Main entry page for the application.
 ├── components/
-│   ├── layout/          # Layout-specific components used in app structure.
-│   │   ├── Footer.tsx   # Footer component with links or branding.
-│   │   ├── Header.tsx   # Header component, typically includes navigation.
-│   │   ├── Main.tsx     # Wrapper component for the main content area.
-│   │   └── SideBar.tsx  # Sidebar component for navigation or options.
+│   ├── layout/                     # Layout-specific components used in app structure.
+│   │   ├── Footer.tsx              # Footer component with links or branding.
+│   │   ├── Header.tsx              # Header component, typically includes navigation.
+│   │   ├── Main.tsx                # Wrapper component for the main content area.
+│   │   └── SideBar.tsx             # Sidebar component for navigation or options.
 │   │
-│   ├── ui/              # UI components for user interactions.
-│   │   ├── Button.tsx   # Reusable button component with variants and props.
-│   │   ├── InputField.tsx # Form input field component with validation props.
-│   │   ├── PhoneInput.tsx # Phone number input with country code support.
-│   │   ├── RadioGroup.tsx # Component for radio button groups.
-│   │   └── SelectField.tsx # Select dropdown component for form inputs.
-│   └── SubmitModal.tsx # Modal for confirming form submissions.
+│   ├── ui/                         # UI components for user interactions.
+│   │   ├── Button.tsx              # Reusable button component with variants and props.
+│   │   ├── InputField.tsx          # Form input field component with validation props.
+│   │   ├── PhoneInput.tsx          # Phone number input with country code support.
+│   │   ├── RadioGroup.tsx          # Component for radio button groups.
+│   │   └── SelectField.tsx         # Select dropdown component for form inputs.
+│   └── SubmitModal.tsx             # Modal for confirming form submissions.
 │   
-├── forms/               # Components specifically for handling form interactions.
-│   ├── ActivityForm.tsx # Form to handle activity-related details submission.
-│   └── LocationForm.tsx # Form to manage location-specific data entry.
+├── forms/                          # Components specifically for handling form interactions.
+│   ├── ActivityForm.tsx            # Form to handle activity-related details submission.
+│   └── LocationForm.tsx            # Form to manage location-specific data entry.
 │   
-├── hooks/               # Custom React hooks for reusable logic.
-│   ├── useActivityForm.ts # Manages state and validation for ActivityForm.
-│   ├── useBeforeUnload.ts # Hook to warn users before closing the tab with unsaved data.
-│   ├── useDropdownPosition.ts # Manages positioning for dropdown components.
-│   ├── useFilteredSearch.ts # Implements search filtering logic.
-│   ├── useHandleClickOutside.ts # Detects clicks outside a target element.
-│   ├── useLoadData.ts    # Loads initial data for forms or components.
-│   ├── useLocationForm.ts # Manages state and validation for LocationForm.
-│   └── useStepHandler.ts # Handles multi-step form navigation logic.
+├── hooks/                          # Custom React hooks for reusable logic.
+│   ├── useActivityForm.ts          # Manages state and validation for ActivityForm.
+│   ├── useBeforeUnload.ts          # Hook to warn users before closing the tab with unsaved data.
+│   ├── useDropdownPosition.ts      # Manages positioning for dropdown components.
+│   ├── useFilteredSearch.ts        # Implements search filtering logic.
+│   ├── useHandleClickOutside.ts    # Detects clicks outside a target element.
+│   ├── useLoadData.ts              # Loads initial data for forms or components.
+│   ├── useLocationForm.ts          # Manages state and validation for LocationForm.
+│   └── useStepHandler.ts           # Handles multi-step form navigation logic.
 │
-├── lib/                 # Shared utilities, constants, and type definitions.
-│   ├── constants.ts     # Centralized constants used across the app.
-│   ├── types.ts         # Type definitions for data models and props.
-│   ├── utils.ts         # Utility functions for general app logic.
-│   └── validations.ts   # Validation logic for form fields using Zod or custom rules.
+├── lib/                            # Shared utilities, constants, and type definitions.
+│   ├── constants.ts                # Centralized constants used across the app.
+│   ├── types.ts                    # Type definitions for data models and props.
+│   ├── utils.ts                    # Utility functions for general app logic.
+│   └── validations.ts              # Validation logic for form fields using Zod or custom rules.
 └── styles/
-    └── globals.css      # Global CSS styles to maintain a consistent theme.
+    └── globals.css                 # Global CSS styles to maintain a consistent theme.
 ```
 
 
