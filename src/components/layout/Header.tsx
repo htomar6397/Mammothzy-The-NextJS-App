@@ -1,5 +1,6 @@
-import Logopng from '/public/logos/logo.svg';
-import Profilesvg from '/public/logos/profile.svg';
+"use client";
+import Logopng from "/public/logos/logo.svg";
+import Profilesvg from "/public/logos/profile.svg";
 export function Header() {
   return (
     <header className="flex justify-center items-center px-[6rem] py-[0.6625rem]   border-b-[1px]  border-b-[#E7E7E7]  ">

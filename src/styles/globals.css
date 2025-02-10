@@ -58,3 +58,23 @@ input[type='number'] {
   -moz-appearance: textfield;
 }
 /* ...... */
+
+/* for custom scrollbar in dropdown */
+.custom-scrollbar {
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(0, 0, 0, 0.4);
+}
+/* .... */

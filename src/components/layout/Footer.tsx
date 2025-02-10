@@ -1,9 +1,9 @@
+"use client";
 import Facebook from "/public/logos/fb.svg";
 import LinkedIn from "/public/logos/lkdn.svg";
-import Instagram from "/public/logos/ig.svg"
+import Instagram from "/public/logos/ig.svg";
 import Gmail from "/public/logos/gmail.svg";
 import Logosvg from "/public/logos/logo.svg";
-
 
 export function Footer() {
   return (
@@ -67,7 +67,7 @@ export function Footer() {
       ></div>
       <div className="  ">
         <p className=" h-[26px] font-medium text-[16px] leading-[160%] text-[#6B6B6B] tracking-[0.04]   ">
-          Copyright © 2025
+          {`Copyright © ${new Date().getFullYear()}`}
         </p>
       </div>
     </footer>

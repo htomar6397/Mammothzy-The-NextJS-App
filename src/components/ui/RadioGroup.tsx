@@ -1,22 +1,8 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import Check from "/public/logos/check.svg";
+import { RadioGroupProps, RadioOption } from "@/lib/types";
 
-type RadioOption = {
-  label: string;
-  value: string;
-};
-
-type RadioGroupProps = {
-  options: RadioOption[];
-  name: string;
-  onChange: (value: string) => void;
-  selectedValue: string;
-  error?: string;
-  groupLabel: string;
-  required?: boolean;
-  other?: boolean;
-};
 
 const RadioGroup: React.FC<RadioGroupProps> = ({
   options,
@@ -31,21 +17,26 @@ const RadioGroup: React.FC<RadioGroupProps> = ({
   const [lab, setLab] = useState<string>("");
   const [otherInputValue, setOtherInputValue] = useState<string>("");
 
+  // set label or input value for other option
   useEffect(() => {
-    const selectedOption = options.find(
-      (option) => option.value === selectedValue
-    );
-    console.log(selectedOption , selectedValue);
-    
-    setLab(selectedOption?.label || (selectedValue && "Other"));
-    if (selectedOption === undefined && selectedValue === "") setLab("Other");
-    setOtherInputValue(selectedOption? "" : selectedValue);
+    const setLabelandValue = ()=>{
+         const selectedOption = options.find(
+           (option) => option.value === selectedValue
+         );
+         // console.log(selectedOption , selectedValue);
+         setLab(selectedOption?.label || (selectedValue && "Other"));
+         if (selectedOption === undefined && selectedValue === "")
+           setLab("Other");
+         setOtherInputValue(selectedOption ? "" : selectedValue);
+    }
+    setLabelandValue(); // Run once on initial render and whenever selectedValue changes
   }, [selectedValue, options]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
-    setOtherInputValue(value);
-    onChange(value); // Send custom value to parent
+if (/^[A-Za-z\s]{0,30}$/.test(value)){ setOtherInputValue(value);
+                 onChange(value); // Send custom value to parent
+}
   };
 
   const handleRadioChange = (option: RadioOption) => {
@@ -53,6 +44,7 @@ const RadioGroup: React.FC<RadioGroupProps> = ({
       setOtherInputValue("");
       onChange(option.value);
     }
+    else onChange("");
     setLab(option.label);
   };
 
@@ -133,6 +125,7 @@ const RadioGroup: React.FC<RadioGroupProps> = ({
                   placeholder="Specify the category"
                   value={otherInputValue}
                   onChange={handleInputChange}
+                  maxLength={20}
                   className="w-full border-[1px] rounded-full border-gray-200 px-[0.96rem] text-[12px] leading-[20px] h-10 shadow-sm focus:border-blue-500 focus:ring-blue-500 placeholder:text-gray-500"
                 />
               </div>

@@ -1,18 +1,19 @@
 
-import React, { Dispatch, useState } from "react";
+"use client"
+import {  useState } from "react";
 import CheckSvg from "/public/images/green.png"
 import CrossSvg  from "/public/logos/cross.svg"
 import Image from "next/image";
-interface ModalProps {
-  setStep: Dispatch<React.SetStateAction<number | null>>;
-}
-export const Modal: React.FC<ModalProps> = ({ setStep }) => {
+import { FormProps } from "@/lib/types";
+
+
+export const Modal: React.FC<FormProps> = ({ setStep }) => {
 
   const [isOpen, setIsOpen] = useState(true);
 
   const closeModal = () => {
     setIsOpen(false);
-    setStep(1);
+    setStep(null);
   
   };
 

@@ -1,16 +1,12 @@
+"use client"
 import Flag from "/public/logos/flag.svg";
 import Location from "/public/logos/location.svg";
 
-interface SidebarProps {
-  step: number | null; // Allow null for uninitialized state
-}
-
-const Sidebar: React.FC<SidebarProps> = ({ step }) => {
+const Sidebar: React.FC<{ step: number | null }> = ({ step }) => {
   const ACTIVE_STEP_STYLES = "bg-[#F7F7F7] font-semibold";
   const INACTIVE_TEXT_COLOR = "#6B6B6B";
   const ACTIVE_TEXT_COLOR = "#2E2B2B";
-  console.log(step);
-  
+
   const getNavItemClass = (itemStep: number) =>
     step === itemStep ? ACTIVE_STEP_STYLES : "";
 

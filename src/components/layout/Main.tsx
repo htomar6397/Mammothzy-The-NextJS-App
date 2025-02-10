@@ -1,26 +1,15 @@
 "use client";
-import Sidebar from "@/components/SideBar";
-import { useEffect, useState } from "react";
-import ActivityForm from "./ActivityForm";
-import LocationForm from "./LocationForm";
+import Sidebar from "@/components/layout/SideBar";
+import ActivityForm from "@/forms/ActivityForm";
+import LocationForm from "@/forms/LocationForm";
+import { useStepHandler } from "@/hooks/useStepHandler";
+import  useBeforeUnload  from "@/hooks/useBeforeUnload";
 
 export default function Main() {
-  const [step, setStep] = useState<number | null>(null); // No initial value for step
-  const [loading, setLoading] = useState(true);
+  const { step, setStep, loading } = useStepHandler();
 
-  useEffect(() => {
-    // Ensure sessionStorage access only in the client
-    const storedStep = Number(sessionStorage.getItem("step")) || 1;
-    setStep(storedStep);
-    setLoading(false);
-  }, []);
-
-  useEffect(() => {
-    if (step !== null) {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }
-    
-  }, [step]);
+  // Call the useBeforeUnload hook to handle the reload , cut  tabs for unsaved data
+  useBeforeUnload()
 
   return (
     <div className="px-[7rem] py-8 flex flex-col gap-8">

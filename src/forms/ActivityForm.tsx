@@ -1,75 +1,15 @@
-"use client"
-import React, { Dispatch, useEffect } from "react";
-import { useForm, Controller } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import * as z from "zod";
+"use client";
+import { Controller } from "react-hook-form";
 import RadioGroup from "@/components/ui/RadioGroup";
 import InputField from "@/components/ui/InputField";
-import {
-  activitySchema,
-  activityTypes,
-  locationTypes,
-  categories,
-} from "@/utils/activity.validation";
+import { categories, activityTypes, locationTypes } from "@/lib/constants";
+import { useActivityForm } from "@/hooks/useActivityForm";
+import { FormProps } from "@/lib/types";
+import Button from "@/components/ui/Button";
 
+const ActivityForm: React.FC<FormProps> = ({ setStep }) => {
+  const { handleSubmit, control, errors, onFinalSubmit } = useActivityForm({ setStep });
 
-interface ActivityFormProps {
-  setStep: Dispatch<React.SetStateAction<number | null>>;
-}
-
-
-type ActivityFormValues = z.infer<typeof activitySchema>;
-
-const ActivityForm: React.FC<ActivityFormProps> = ({setStep}) => {
-  const {
-    handleSubmit,
-    control,
-    formState: { errors },
-    reset,
-    getValues
-  } = useForm<ActivityFormValues>({
-    resolver: zodResolver(activitySchema),
-  });
-  // Load initial data from localStorage
-  useEffect(() => {
-    const savedData = sessionStorage.getItem("activityData");
-    if (savedData) {
-      reset(JSON.parse(savedData));
-    }
-    return ()=>{
-      if(savedData) sessionStorage.removeItem("activityData");
-    }
-
-  });
-
-    useEffect(() => {
-      // Warn if data differs from session storage
-      const handleBeforeUnload = (event: BeforeUnloadEvent) => {
-        const currentData = JSON.stringify(getValues());
-        const savedDataString = sessionStorage.getItem("activityData") || "{}";
-// console.log(currentData,savedDataString);
-
-        if (savedDataString != currentData) {
-          event.preventDefault();
-          alert("");
-        }
-      };
-
-      window.addEventListener("beforeunload", handleBeforeUnload);
-
-      return () => {
-        window.removeEventListener("beforeunload", handleBeforeUnload);
-        
-      };
-    }, [reset, getValues]);
-    
-  const onSubmit = (data: ActivityFormValues) => {
-   
-    sessionStorage.setItem("activityData", JSON.stringify(data));
-
-    setStep(2);
-    sessionStorage.setItem("step","2");
-  };
 
   return (
     <div className="flex flex-col gap-4">
@@ -77,7 +17,7 @@ const ActivityForm: React.FC<ActivityFormProps> = ({setStep}) => {
         Activity Details
       </div>
 
-      <form onSubmit={handleSubmit(onSubmit)} className=" flex flex-col gap-4">
+      <form onSubmit={handleSubmit(onFinalSubmit)} className=" flex flex-col gap-4">
         {/* Activity Name Field */}
         <Controller
           name="name"
@@ -86,10 +26,11 @@ const ActivityForm: React.FC<ActivityFormProps> = ({setStep}) => {
             <InputField
               label="Activity Name"
               placeholder="Eg: Cooking class in Palo Alto"
-              value={field.value}
+              value={field.value || ""}
               onChange={field.onChange}
               error={errors.name?.message}
               required
+              pattern="^[A-Za-z0-9\s\-&,.:]{0,50}$"
             />
           )}
         />
@@ -128,8 +69,9 @@ const ActivityForm: React.FC<ActivityFormProps> = ({setStep}) => {
                   value={field.value}
                   onChange={field.onChange}
                   aria-label="Activity Description"
-                  className="resize-none w-full border-2 rounded-[0.625rem] h-[9.25rem] border-[#dbe0f8a4]  p-[0.90rem] text-sm shadow-sm font-normal text-[14px] focus:border-blue-500 focus:ring-blue-500 placeholder:text-gray-500"
+                  className="resize-none custom-scrollbar w-full border-2 rounded-[0.625rem] h-[9.25rem] border-[#dbe0f8a4]  p-[0.90rem] text-sm shadow-sm font-normal text-[14px] focus:border-blue-500 focus:ring-blue-500 placeholder:text-gray-500"
                   rows={5}
+                  maxLength={500}
                 />
               </div>
               {errors.description?.message && (
@@ -180,18 +122,27 @@ const ActivityForm: React.FC<ActivityFormProps> = ({setStep}) => {
             How many members can take part in the activity?
           </label>
 
-          <div className="flex gap-4">
+          <div className="flex gap-2">
+            {/* minMembers */}
             <Controller
               name="minMembers"
               control={control}
               render={({ field }) => (
                 <div className="flex-grow">
                   <input
-                    type="number"
+                    type="text" // Switched to text for better validation
                     placeholder="Minimum Members"
-                    value={field.value}
-                    onChange={(e) => field.onChange(e.target.value)}
-                    className="w-full border-[1px] rounded-full  border-gray-200 px-[0.96rem] h-[2.375rem] text-[12px] leading-[20px] shadow-sm focus:border-blue-500 focus:ring-blue-500 placeholder:text-gray-500"
+                    value={field.value || ""}
+                    onChange={(e) => {
+                      if (/^\d{0,3}$/.test(e.target.value)) {
+                        // Only allows 0 to 999
+                        console.log(e.target.value);
+
+                        field.onChange(e.target.value);
+                      }
+                    }}
+                    inputMode="numeric" // Enables numeric keyboard on mobile
+                    className="w-full border-[1px] rounded-full border-gray-200 px-[0.96rem] h-[2.375rem] text-[12px] leading-[20px] shadow-sm focus:border-blue-500 focus:ring-blue-500 placeholder:text-gray-500"
                   />
                   {errors.minMembers?.message && (
                     <p className="text-red-500 text-xs">
@@ -201,18 +152,28 @@ const ActivityForm: React.FC<ActivityFormProps> = ({setStep}) => {
                 </div>
               )}
             />
+            {/* maxMembers */}
             <Controller
               name="maxMembers"
               control={control}
               render={({ field }) => (
                 <div className="flex-grow">
                   <input
-                    type="number"
+                    type="text" // Switched to text for better validation
                     placeholder="Maximum Members"
-                    value={field.value}
-                    onChange={(e) => field.onChange(e.target.value)}
-                    className="w-full border-[1px]  rounded-full  border-gray-200 px-[0.96rem] h-[2.375rem] text-[12px] leading-[20px] shadow-sm focus:border-blue-500 focus:ring-blue-500 placeholder:text-gray-500"
+                    value={field.value || ""}
+                    onChange={(e) => {
+                      if (/^\d{0,3}$/.test(e.target.value)) {
+                        // Only allows 0 to 999
+                        console.log(e.target.value);
+
+                        field.onChange(e.target.value);
+                      }
+                    }}
+                    inputMode="numeric" // Enables numeric keyboard on mobile
+                    className="w-full border-[1px] rounded-full border-gray-200 px-[0.96rem] h-[2.375rem] text-[12px] leading-[20px] shadow-sm focus:border-blue-500 focus:ring-blue-500 placeholder:text-gray-500"
                   />
+
                   {errors.maxMembers?.message && (
                     <p className="text-red-500 text-xs">
                       {errors.maxMembers?.message}
@@ -224,12 +185,9 @@ const ActivityForm: React.FC<ActivityFormProps> = ({setStep}) => {
           </div>
         </div>
 
-        <button
-          type="submit"
-          className="w-[10.5625rem] mt-4 bg-black font-[550] text-sm text-white py-[0.75rem] text-center rounded-full hover:bg-gray-800"
-        >
-          Save and Continue
-        </button>
+        <div className=" mt-4 ">
+          <Button label="Save and Continue" type="submit" variant="primary" />
+        </div>
       </form>
     </div>
   );
